@@ -21,7 +21,7 @@ bot.on(message('text'), async ctx => {
 
         const loader = new Loader(ctx)
 
-        loader.show()
+        // loader.show()
 
 
         // const response = await chatGPT(text)
@@ -33,7 +33,7 @@ bot.on(message('text'), async ctx => {
         const notionResponse = await create(text)
 
         if(notionResponse){
-            loader.hide()
+            ctx.answerCbQuery('Задача создана')
         }
 
         // ctx.reply(`${text} \n \n ${notionResponse.url}`)
