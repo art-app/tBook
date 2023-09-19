@@ -24,18 +24,20 @@ bot.on(message('text'), async ctx => {
         loader.show()
 
 
-        const response = await chatGPT(text)
+        // const response = await chatGPT(text)
+        //
+        // if(!response){
+        //     return ctx.reply('Ошибка API')
+        // }
 
-        if(!response){
-            return ctx.reply('Ошибка API')
+        const notionResponse = await create(text)
+
+        if(notionResponse){
+            loader.hide()
         }
 
-        const notionResponse = await create(text, response.content)
-
-        loader.hide()
-
-        ctx.reply(`${text} \n \n ${notionResponse.url}`)
-        ctx.reply(response.content)
+        // ctx.reply(`${text} \n \n ${notionResponse.url}`)
+        // ctx.reply(response.content)
     }catch (e) {
         console.error('error processing text', e?.message)
     }
